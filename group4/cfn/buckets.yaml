@@ -1,0 +1,83 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: CloudFormation template for s3 bucket
+Resources:
+  InputBucket:
+    Type: 'AWS::S3::Bucket'
+    Description: Creating Amazon S3 bucket from CloudFormation
+    Properties:
+      BucketName:
+        Ref: InputBucketName
+      BucketEncryption: 
+        ServerSideEncryptionConfiguration: 
+        - ServerSideEncryptionByDefault:
+            SSEAlgorithm: AES256
+
+  OutputBucket:
+    Type: 'AWS::S3::Bucket'
+    Description: Creating Amazon S3 bucket from CloudFormation
+    Properties:
+      BucketName:
+        Ref: OutputBucketName
+      BucketEncryption: 
+        ServerSideEncryptionConfiguration: 
+        - ServerSideEncryptionByDefault:
+            SSEAlgorithm: AES256
+
+  BulkUploadBucket:
+    Type: 'AWS::S3::Bucket'
+    Description: Creating Amazon S3 bucket from CloudFormation
+    Properties:
+      BucketName:
+        Ref: BulkUploadBucketName
+      BucketEncryption: 
+        ServerSideEncryptionConfiguration: 
+        - ServerSideEncryptionByDefault:
+            SSEAlgorithm: AES256
+
+  SupportFilesBucket:
+    Type: 'AWS::S3::Bucket'
+    Description: Creating Amazon S3 bucket from CloudFormation
+    Properties:
+      BucketName:
+        Ref: SupportFilesBucketName
+      BucketEncryption: 
+        ServerSideEncryptionConfiguration: 
+        - ServerSideEncryptionByDefault:
+            SSEAlgorithm: AES256
+
+Outputs:
+  InputBucket:
+    Value: !Ref InputBucket
+
+  OutputBucket:
+    Value: !Ref OutputBucket
+
+  BulkUploadBucket:
+    Value: !Ref BulkUploadBucket
+
+  SupportFilesBucket:
+    Value: !Ref SupportFilesBucket
+
+Parameters:
+  InputBucketName:
+    Type: String
+    Default: group4-capstone-input
+    Description: Enter a S3 Bucket for input files
+
+  OutputBucketName:
+    Type: String
+    Default: group4-capstone-output
+    Description: Enter a S3 Bucket Name for output files
+
+  BulkUploadBucketName:
+    Type: String
+    Default: group4-capstone-bulkupload
+    Description: Enter a S3 Bucket Name for bulk uploads
+
+  SupportFilesBucketName:
+    Type: String
+    Default: group4-capstone-supportfiles
+    Description: Enter a S3 Bucket Name for Support files
+
+
+

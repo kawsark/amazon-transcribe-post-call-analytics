@@ -1,0 +1,19 @@
+id=E29HGVN8VDPRVB
+aws cloudfront create-invalidation --distribution-id ${id} --paths "/*"
+
+aws cloudformation deploy \
+  --template-file ./buckets.yaml \
+  --stack-name Group4Buckets
+
+aws cloudformation deploy \
+  --template-file ./pca-main.yaml \
+  --stack-name PostCallAnalytics \
+  --parameter-overrides AdminUsername=admin \
+    AdminEmail=kawsark@amazon.com \
+    loadSampleAudioFiles=true \
+    EnableTranscriptKendraSearch="Yes, create new Kendra Index (Developer Edition)" \
+    InputBucketName=group4-pca-input \
+    BulkUploadBucketName=group4-pca-bulkoutput \
+    OutputBucketName=group4-pca-output \
+    SupportFilesBucketName=group4-pca-supportfiles
+
